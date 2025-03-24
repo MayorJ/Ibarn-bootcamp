@@ -27,3 +27,18 @@ document.querySelectorAll('.accordion-button').forEach(button => {
         });
     });
 });
+
+// Ensure Navbar Closes After Clicking a Link (on Mobile)
+document.querySelectorAll('.nav-link').forEach(link => {
+    link.addEventListener('click', function() {
+        let navbarCollapse = document.querySelector('.navbar-collapse');
+        if (navbarCollapse.classList.contains('show')) {
+            navbarCollapse.classList.remove('show');
+        }
+    });
+});
+
+// Improve Hamburger Animation
+document.querySelector('.navbar-toggler').addEventListener('click', function() {
+    this.classList.toggle('active');
+});
