@@ -1,45 +1,29 @@
-// // Toggle Mobile Menu
-// document.querySelector(".menu-toggle").addEventListener("click", function() {
-//     document.querySelector(".nav-links").classList.toggle("show");
-// });
-
-// // Enrollment Alert
-// function enroll() {
-//     alert("Thank you for your interest! Registration details will be sent soon.");
-// }
-
-// // FAQ Toggle
-// function toggleFAQ(element) {
-//     let answer = element.nextElementSibling;
-//     if (answer.style.display === "block") {
-//         answer.style.display = "none";
-//         element.innerText = element.innerText.replace("-", "+");
-//     } else {
-//         answer.style.display = "block";
-//         element.innerText = element.innerText.replace("+", "-");
-//     }
-// }
-
-// Toggle Mobile Menu
-document.querySelector(".menu-toggle").addEventListener("click", function() {
-    document.querySelector(".nav-links").classList.toggle("show");
+// Smooth Scroll Effect for Navbar Links
+document.querySelectorAll('.nav-link').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
 });
 
-// Enrollment Alert
-function enroll() {
-    alert("Thank you for your interest! Registration details will be sent soon.");
-}
+// Navbar Transparency Toggle on Scroll
+window.addEventListener('scroll', function() {
+    let navbar = document.querySelector('.custom-navbar');
+    if (window.scrollY > 50) {
+        navbar.style.background = "rgba(0, 0, 0, 0.9)";
+    } else {
+        navbar.style.background = "rgba(0, 0, 0, 0.8)";
+    }
+});
 
-// Fade-in Animation on Scroll
-const fadeElements = document.querySelectorAll('.fade-in');
-
-const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.style.opacity = 1;
-            entry.target.style.transform = "translateY(0)";
-        }
+// FAQ Accordion Auto Close
+document.querySelectorAll('.accordion-button').forEach(button => {
+    button.addEventListener('click', function() {
+        document.querySelectorAll('.accordion-collapse').forEach(collapse => {
+            if (collapse !== this.nextElementSibling) {
+                collapse.classList.remove('show');
+            }
+        });
     });
-}, { threshold: 0.2 });
-
-fadeElements.forEach(el => observer.observe(el));
+});
