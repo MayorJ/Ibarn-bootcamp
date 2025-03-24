@@ -107,6 +107,68 @@ body {
     background-color: rgba(255, 255, 255, 0.2);
 }
 
+/* Contact Section - Separation of Details and Form */
+.contact-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    background: white;
+    padding: 40px;
+    border-radius: 10px;
+}
+
+.contact-details {
+    flex: 1;
+    background: linear-gradient(135deg, #1d2b64, #f8cdda);
+    color: white;
+    padding: 40px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.contact-details h2 {
+    margin-bottom: 20px;
+}
+
+.contact-form {
+    flex: 1;
+    padding: 40px;
+}
+
+.contact-form h2 {
+    margin-bottom: 20px;
+}
+
+/* Contact Form */
+.contact-form form {
+    display: flex;
+    flex-direction: column;
+}
+
+.contact-form input, 
+.contact-form textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.contact-form button {
+    background: #ff7eb3;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.contact-form button:hover {
+    background: #ff5e99;
+}
+
 /* Footer */
 .footer {
     background: rgba(0, 0, 0, 0.8);

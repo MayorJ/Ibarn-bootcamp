@@ -1,44 +1,63 @@
-// Smooth Scroll Effect for Navbar Links
-document.querySelectorAll('.nav-link').forEach(anchor => {
-    anchor.addEventListener('click', function(e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    });
-});
+document.addEventListener("DOMContentLoaded", function () {
+    console.log("Script Loaded Successfully!");
 
-// Navbar Transparency Toggle on Scroll
-window.addEventListener('scroll', function() {
-    let navbar = document.querySelector('.custom-navbar');
-    if (window.scrollY > 50) {
-        navbar.style.background = "rgba(0, 0, 0, 0.9)";
-    } else {
-        navbar.style.background = "rgba(0, 0, 0, 0.8)";
-    }
-});
+    // Smooth Scrolling for Navigation Links
+    document.querySelectorAll(".nav-link").forEach(link => {
+        link.addEventListener("click", function (event) {
+            event.preventDefault();
+            const targetId = this.getAttribute("href").substring(1);
+            const targetElement = document.getElementById(targetId);
 
-// FAQ Accordion Auto Close
-document.querySelectorAll('.accordion-button').forEach(button => {
-    button.addEventListener('click', function() {
-        document.querySelectorAll('.accordion-collapse').forEach(collapse => {
-            if (collapse !== this.nextElementSibling) {
-                collapse.classList.remove('show');
+            if (targetElement) {
+                window.scrollTo({
+                    top: targetElement.offsetTop - 60,
+                    behavior: "smooth"
+                });
             }
         });
     });
-});
 
-// Ensure Navbar Closes After Clicking a Link (on Mobile)
-document.querySelectorAll('.nav-link').forEach(link => {
-    link.addEventListener('click', function() {
-        let navbarCollapse = document.querySelector('.navbar-collapse');
-        if (navbarCollapse.classList.contains('show')) {
-            navbarCollapse.classList.remove('show');
-        }
+    // Navbar Toggle for Mobile
+    const navbarToggler = document.querySelector(".navbar-toggler");
+    const navbarCollapse = document.querySelector(".navbar-collapse");
+
+    navbarToggler.addEventListener("click", function () {
+        navbarCollapse.classList.toggle("show");
     });
-});
 
-// Improve Hamburger Animation
-document.querySelector('.navbar-toggler').addEventListener('click', function() {
-    this.classList.toggle('active');
+    // Contact Form Submission
+    document.getElementById("contact-form").addEventListener("submit", function (event) {
+        event.preventDefault();
+
+        // Get form values
+        const name = document.getElementById("name").value.trim();
+        const email = document.getElementById("email").value.trim();
+        const phone = document.getElementById("phone").value.trim();
+        const subject = document.getElementById("subject").value;
+        const message = document.getElementById("message").value.trim();
+
+        // Basic validation
+        if (!name || !email || !message) {
+            alert("Please fill in all required fields.");
+            return;
+        }
+
+        console.log("Form Submitted:", { name, email, phone, subject, message });
+
+        // Simulate form submission (Replace this with actual API call if needed)
+        setTimeout(() => {
+            alert("Your message has been sent successfully!");
+            document.getElementById("contact-form").reset();
+        }, 500);
+    });
+
+    // FAQ Accordion Behavior
+    const faqButtons = document.querySelectorAll(".accordion-button");
+    faqButtons.forEach(button => {
+        button.addEventListener("click", function () {
+            const target = this.getAttribute("data-bs-target");
+            document.querySelector(target).classList.toggle("show");
+        });
+    });
+
 });
